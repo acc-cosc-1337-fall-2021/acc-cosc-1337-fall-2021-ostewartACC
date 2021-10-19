@@ -12,6 +12,7 @@ bool TicTacToe::game_over()
 void TicTacToe::start_game(string first_player)
 {
     player = first_player;
+    clear_board();
 }
 
 void TicTacToe::mark_board(int position)
@@ -27,7 +28,9 @@ string TicTacToe::get_player() const
 
 void TicTacToe::display_board() const
 {
-    cout << "BLAH\n";
+    cout << pegs[0] << "|" << pegs[1] << "|" << pegs[2] << "\n";
+    cout << pegs[3] << "|" << pegs[4] << "|" << pegs[5] << "\n";
+    cout << pegs[6] << "|" << pegs[7] << "|" << pegs[8] << "\n\n";
 }
 
 void TicTacToe::set_next_player()
@@ -45,10 +48,22 @@ void TicTacToe::set_next_player()
 
 bool TicTacToe::check_board_full()
 {
-    return 0;
+    bool check = true;
+    for (auto i : pegs)
+    {
+        if (i == " ")
+        {
+            check = false;
+            break;
+        }        
+    }
+    return check;
 }
 
 void TicTacToe::clear_board()
 {
-    cout << "BLAH";
+    for (auto& i : pegs)
+    {
+        i = " ";        
+    }
 }
