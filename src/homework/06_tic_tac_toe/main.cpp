@@ -19,8 +19,11 @@ int main()
 		cout << "1 | 2 | 3\n";
     	cout << "4 | 5 | 6\n";
     	cout << "7 | 8 | 9\n\n";
-		cout << "Choose first player X or O: \n";
-		cin >> first_player;
+		do
+		{
+			cout << "Choose first player X or O: \n";
+			cin >> first_player;
+		} while (!(first_player == "X" || first_player == "O"));
 		tictactoe.start_game(first_player);
 		while (tictactoe.game_over() != true)
 		{
@@ -29,6 +32,14 @@ int main()
 			tictactoe.mark_board(position);
 			tictactoe.display_board();			
 		}
+		if(tictactoe.get_winner() != "C")
+		{
+			cout << "The winner is player " << tictactoe.get_winner() << "!\n";
+		}
+		else
+		{
+			cout << "This game was a tie.\n";
+		}		
 		cout << "The game is over!\n\n";
 		cout << "Would you like to exit the game? (Y or N)?\n";
 		cin >> choice;
