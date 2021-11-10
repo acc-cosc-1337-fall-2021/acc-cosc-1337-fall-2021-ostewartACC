@@ -44,48 +44,17 @@ string TicTacToe::get_winner()
 
 bool TicTacToe::check_column_win()
 {
-    bool win = false;
-    if(
-        (pegs[0] != " " && pegs[0] == pegs[3] && pegs[3] == pegs[6]) //column 1 win
-        ||
-        (pegs[1] != " " && pegs[1] == pegs[4] && pegs[4] == pegs[7]) //column 2 win
-        ||
-        (pegs[2] != " " && pegs[2] == pegs[5] && pegs[5] == pegs[8]) //column 3 win
-        )
-    {
-        win = true;
-    }
-    return win;
+    return false;
 }
 
 bool TicTacToe::check_row_win()
 {
-    bool win = false;
-    if(
-        (pegs[0] != " " && pegs[0] == pegs[1] && pegs[1] == pegs[2]) //row 1 win
-        ||
-        (pegs[3] != " " && pegs[3] == pegs[4] && pegs[4] == pegs[5]) //row 2 win
-        ||
-        (pegs[6] != " " && pegs[6] == pegs[7] && pegs[7] == pegs[8]) //row 3 win
-        )
-    {
-        win = true;
-    }
-    return win;    
+    return false; 
 }
 
 bool TicTacToe::check_diagonal_win()
 {
-    bool win = false;
-    if(
-        (pegs[0] != " " && pegs[0] == pegs[4] && pegs[4] == pegs[8]) //diagonal 1 win
-        ||
-        (pegs[6] != " " && pegs[6] == pegs[4] && pegs[4] == pegs[2]) //diagonal 2 win
-        )
-    {
-        win = true;
-    }
-    return win;     
+    return false;  
 }
 
 void TicTacToe::set_winner()
@@ -135,7 +104,7 @@ void TicTacToe::clear_board()
     }
 }
 
-ostream& operator<<(ostream& out, const TicTacToe& game)
+ostream& operator<<(ostream& out, unique_ptr<TicTacToe(s)> game)
 {
     out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "\n" \
     << game.pegs[3] << "|" << game.pegs[4] << "|" << game.pegs[5] << "\n" \
