@@ -7,12 +7,12 @@ using std::cout; using std::cin;
 bool TicTacToe::game_over()
 {
     bool over = false;
-    if(TicTacToe::check_column_win() || TicTacToe::check_row_win() || TicTacToe::check_diagonal_win())
+    if(check_column_win() || check_row_win() || check_diagonal_win())
     {
-        TicTacToe::set_winner();
+        set_winner();
         over = true;
     }
-    else if(TicTacToe::check_board_full())
+    else if(check_board_full())
     {
         winner = "C";
         over = true;
@@ -104,11 +104,28 @@ void TicTacToe::clear_board()
     }
 }
 
-ostream& operator<<(ostream& out, unique_ptr<TicTacToe(s)> game)
+ostream& operator<<(ostream& out, const TicTacToe& game)
 {
-    out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "\n" \
-    << game.pegs[3] << "|" << game.pegs[4] << "|" << game.pegs[5] << "\n" \
-    << game.pegs[6] << "|" << game.pegs[7] << "|" << game.pegs[8] << "\n\n";
+    int size = game.pegs.size();
+    cout<<size<<"\n";
+
+    if (size == 3)
+    {
+        out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "\n" \
+        << game.pegs[3] << "|" << game.pegs[4] << "|" << game.pegs[5] << "\n" \
+        << game.pegs[6] << "|" << game.pegs[7] << "|" << game.pegs[8] << "\n\n";
+    }
+    else if (size == 4)
+    {
+        out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "|" << game.pegs[3] << "\n" \
+        << game.pegs[4] << "|" << game.pegs[5] << "|" << game.pegs[6] << "|" << game.pegs[7] << "\n" \
+        << game.pegs[8] << "|" << game.pegs[9] << "|" << game.pegs[10] << "|" << game.pegs[11] << "\n" \
+        << game.pegs[12] << "|" << game.pegs[13] << "|" << game.pegs[14] << "|" << game.pegs[15] << "\n\n";
+    }
+    else
+    {
+        out << "Size Error - Please Check\n";
+    }
     
     return out;
 }

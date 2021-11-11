@@ -7,7 +7,7 @@
 class TicTacToe4 : public TicTacToe
 {
     public:
-        TicTacToe4(int s) : TicTacToe(4){}
+        TicTacToe4() : TicTacToe(4){}
     
     private:
         bool check_column_win() override;

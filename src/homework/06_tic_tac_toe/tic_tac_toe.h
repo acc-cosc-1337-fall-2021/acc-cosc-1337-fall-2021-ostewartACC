@@ -13,7 +13,7 @@ class TicTacToe
 {
 public:
     TicTacToe(){}
-    TicTacToe(int s) : pegs(s*s, " "){}
+    TicTacToe(int size) : pegs(size*size, " "){}
     bool game_over();
     void start_game(string first_player);
     void mark_board(int postition);
@@ -34,8 +34,8 @@ private:
     string player; //class member variable
     string winner;
 
-friend ostream& operator<<(ostream& out, unique_ptr<TicTacToe(s)> game);
-friend istream& operator>>(istream& in, unique_ptr<TicTacToe(s)> game);
+friend ostream& operator<<(ostream& out, const TicTacToe& game);
+friend istream& operator>>(istream& in, TicTacToe& game);
 };
 
 #endif
