@@ -32,13 +32,13 @@ void TicTacToeManager::update_winner_count(string winner)
 
 ostream& operator<<(ostream& out, const TicTacToeManager& manager)
 {
-    out<< "\n--------------------\n";
-    out<< "\nSummary Of All Games\n";
-    out<< "\n--------------------\n\n";
+    out<< "--------------------\n";
+    out<< "Summary Of All Games\n";
+    out<< "--------------------\n\n";
     
     for(auto& game: manager.games)
     {
-        out<<game.get()<<"\n";
+        out<<*game<<"\n";
     }
 
     out<<"Total X Wins: " << manager.x_wins << "\n";
@@ -46,5 +46,4 @@ ostream& operator<<(ostream& out, const TicTacToeManager& manager)
     out<<"Total Ties: " << manager.ties << "\n\n";
 
     return out;
-
 }

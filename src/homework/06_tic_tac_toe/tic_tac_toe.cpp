@@ -12,7 +12,7 @@ bool TicTacToe::game_over()
         set_winner();
         over = true;
     }
-    else if(check_board_full())
+    else if(TicTacToe::check_board_full())
     {
         winner = "C";
         over = true;
@@ -79,7 +79,6 @@ void TicTacToe::set_next_player()
     {
         player = "X";
     }
-    
 }
 
 bool TicTacToe::check_board_full()
@@ -106,16 +105,15 @@ void TicTacToe::clear_board()
 
 ostream& operator<<(ostream& out, const TicTacToe& game)
 {
-    int size = game.pegs.size();
-    cout<<size<<"\n";
+    int board_size = game.pegs.size();
 
-    if (size == 3)
+    if (board_size == 9)
     {
         out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "\n" \
         << game.pegs[3] << "|" << game.pegs[4] << "|" << game.pegs[5] << "\n" \
         << game.pegs[6] << "|" << game.pegs[7] << "|" << game.pegs[8] << "\n\n";
     }
-    else if (size == 4)
+    else if (board_size == 16)
     {
         out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "|" << game.pegs[3] << "\n" \
         << game.pegs[4] << "|" << game.pegs[5] << "|" << game.pegs[6] << "|" << game.pegs[7] << "\n" \
@@ -133,7 +131,7 @@ ostream& operator<<(ostream& out, const TicTacToe& game)
 istream& operator>>(istream& in, TicTacToe& game)
 {
     auto position = 0;
-    cout << "Player "<< game.get_player() << " pick a position from 1-9: \n";
+    cout << "Player "<< game.get_player() << " pick a position to mark: ";
     in >> position;
     game.mark_board(position);
 	

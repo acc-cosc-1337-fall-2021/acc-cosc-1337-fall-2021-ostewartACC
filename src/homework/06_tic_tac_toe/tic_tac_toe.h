@@ -36,6 +36,7 @@ private:
 
 friend ostream& operator<<(ostream& out, const TicTacToe& game);
 friend istream& operator>>(istream& in, TicTacToe& game);
+
 };
 
 #endif
