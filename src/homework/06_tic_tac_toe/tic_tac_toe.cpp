@@ -42,6 +42,12 @@ string TicTacToe::get_winner()
     return winner;
 }
 
+
+vector<string> TicTacToe::get_pegs() const
+{
+    return pegs;
+}
+
 bool TicTacToe::check_column_win()
 {
     return false;
