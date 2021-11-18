@@ -1,21 +1,16 @@
 //cpp
 #include "tic_tac_toe_data.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
 
 using std::ifstream; using std::ofstream; using std::cout;
 
 void TicTacToeData::save_games(const vector<unique_ptr<TicTacToe>>& games)
 {
-// Open file for writing
-// For each vector of TicTacToe
-// For each char in string
-// Write char to file
-// end char in string loop
-// Write get winner of game to file
-// Write a new line
-// end vector of TicTacToe loop    
-    ofstream games_file;
+ 
+    ofstream out_file;
     cout<<"Open games_file...\n";
-    games_file.open("games.txt");
+    out_file.open("games.txt");
     cout<<"Write to file...\n";
 
     for (auto& game : games)
@@ -23,41 +18,61 @@ void TicTacToeData::save_games(const vector<unique_ptr<TicTacToe>>& games)
         vector<string> pegs = game->get_pegs();
         for (auto ch : pegs)
         {
-            games_file<<ch;       
+            out_file<<ch;       
         }
 
-        games_file<<game->get_winner();
+        out_file<<game->get_winner();
 
-        games_file<<"\n";       
+        out_file<<"\n";       
     }
 
-    games_file.close();
+    out_file.close();
 }
 
 vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
 {
-// Create vector unique ptr of TicTacToe boards
-// Open File
-// Create a string line
-// while getline(read_file, line)// get a line from file
-// Create vector<string> pegs 
-//     for each ch in line - 1 (read only first 9 or 16 characters)
 
-// Create a string with ch. Example string(1, ch)
-// Add the string to vector of string
+    vector<unique_ptr<TicTacToe>> games;
+    ifstream in_file;
 
-// Create a string to get the winner(last item in the vector of string)
-// Create unique ptr of TicTacToe board
-// if vector of string size 9
-//       create board of TicTacToe3 using make_unique with vector of pegs and winner as parameter
-// else if size 16
-//       create board of TicTacToe4 using make_unique with vector of pegs and winner as parameter
+    cout<<"Open file...\n";
+    in_file.open("games.txt");
 
-// add the board to the boards vector
+    string line;
 
-// close the file
+    while(getline(in_file, line))
+    {
+        vector<string> p;
 
-// return the boards 
+        int s = line.size();
+        for(int i = 0; i < s-1; i++)
+        {
+            string pos = string(1, line[i]);
+            p.push_back(pos);
+        }
 
-    return get_games();
+        string w = string(1,line[s]);
+
+        unique_ptr<TicTacToe> game;
+
+        if (p.size() == 9)
+        {
+            game = make_unique<TicTacToe3>(p, w);
+        }
+        else if(p.size() == 16)
+        {
+            game = make_unique<TicTacToe4>(p, w);
+        }
+        else
+        {
+            cout << "Size Error - Please Check\n";
+        }
+
+        games.push_back(move(game));
+    }
+
+    cout<<"Close file\n";
+    in_file.close();    
+
+    return games;
 }

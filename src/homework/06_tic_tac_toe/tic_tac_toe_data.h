@@ -13,7 +13,6 @@ class TicTacToeData : public TicTacToe
     public:
         void save_games(const vector<unique_ptr<TicTacToe>>& games);
         vector<unique_ptr<TicTacToe>> get_games();
-
 };
 
 #endif

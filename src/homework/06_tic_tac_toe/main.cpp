@@ -2,6 +2,7 @@
 #include "tic_tac_toe_manager.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
+#include "tic_tac_toe_data.h"
 #include <iostream>
 
 //write using statements
@@ -9,7 +10,8 @@ using std::cout; using std::cin;
 
 int main() 
 {
-	TicTacToeManager manager; //create the game manager
+	TicTacToeData data;
+	TicTacToeManager(games);
 	string choice = "Y";
 	string first_player;
 	int game_type;
@@ -64,9 +66,9 @@ int main()
 		cout << "The game is over!\n\n";
 
 		//save the game to the game manager
-		manager.save_game(tictactoe);
+		games.save_game(tictactoe);
 		//total the number of wins/ties
-		manager.get_winner_totals(x, o, t);
+		games.get_winner_totals(x, o, t);
 		cout <<"X Wins: " << x << ", O Wins: " << o << ", Ties: " << t << "\n\n";
 
 		// play again?
@@ -74,7 +76,7 @@ int main()
 		cin >> choice;
 	}		
 	while (choice != "N");
-	cout << manager;
-	cout << "Program Exiting...";
+	cout << games;
+	cout << "Program Exiting...\n";
 	return 0;
 }

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_data.h"
 
 using std::string; using std::vector; using std::ostream;
 using std::unique_ptr; using std::make_unique; using std::move;
@@ -14,6 +15,9 @@ using std::unique_ptr; using std::make_unique; using std::move;
 class TicTacToeManager
 {
 public:
+    TicTacToeManager() = default;
+    TicTacToeManager(TicTacToeData& data);
+    ~TicTacToeManager();
     void save_game(unique_ptr<TicTacToe>& game);
     void get_winner_totals(int& x, int& o, int& t);
 
@@ -23,6 +27,7 @@ private:
     int x_wins = 0;
     int o_wins = 0;
     int ties = 0;
+    TicTacToeData data;
 
 friend ostream& operator<<(ostream & out, const TicTacToeManager & manager);
 };
