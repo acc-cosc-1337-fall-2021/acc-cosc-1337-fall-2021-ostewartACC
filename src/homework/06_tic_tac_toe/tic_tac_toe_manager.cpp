@@ -3,7 +3,11 @@
 
 TicTacToeManager::TicTacToeManager(TicTacToeData& data)
 {
-    data.get_games();
+    games = data.get_games();
+    for(auto& game: games)
+    {
+        update_winner_count(game->get_winner());
+    }
 }
 
 TicTacToeManager::~TicTacToeManager()

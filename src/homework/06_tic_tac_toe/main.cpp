@@ -11,7 +11,7 @@ using std::cout; using std::cin;
 int main() 
 {
 	TicTacToeData data;
-	TicTacToeManager(games);
+	TicTacToeManager manager(data);
 	string choice = "Y";
 	string first_player;
 	int game_type;
@@ -66,9 +66,9 @@ int main()
 		cout << "The game is over!\n\n";
 
 		//save the game to the game manager
-		games.save_game(tictactoe);
+		manager.save_game(tictactoe);
 		//total the number of wins/ties
-		games.get_winner_totals(x, o, t);
+		manager.get_winner_totals(x, o, t);
 		cout <<"X Wins: " << x << ", O Wins: " << o << ", Ties: " << t << "\n\n";
 
 		// play again?
@@ -76,7 +76,6 @@ int main()
 		cin >> choice;
 	}		
 	while (choice != "N");
-	cout << games;
-	cout << "Program Exiting...\n";
+	cout << manager;
 	return 0;
 }

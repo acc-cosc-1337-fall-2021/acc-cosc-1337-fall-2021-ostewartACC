@@ -1,7 +1,5 @@
 //cpp
 #include "tic_tac_toe_data.h"
-#include "tic_tac_toe_3.h"
-#include "tic_tac_toe_4.h"
 
 using std::ifstream; using std::ofstream; using std::cout;
 
@@ -9,7 +7,7 @@ void TicTacToeData::save_games(const vector<unique_ptr<TicTacToe>>& games)
 {
  
     ofstream out_file;
-    cout<<"Open games_file...\n";
+    cout<<"Open file...\n";
     out_file.open("games.txt");
     cout<<"Write to file...\n";
 
@@ -26,6 +24,7 @@ void TicTacToeData::save_games(const vector<unique_ptr<TicTacToe>>& games)
         out_file<<"\n";       
     }
 
+    cout<<"Close file...\n";
     out_file.close();
 }
 
@@ -40,6 +39,7 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
 
     string line;
 
+    cout<<"Read file...\n";
     while(getline(in_file, line))
     {
         vector<string> p;
@@ -51,7 +51,7 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
             p.push_back(pos);
         }
 
-        string w = string(1,line[s]);
+        string w = string(1,line[s-1]);
 
         unique_ptr<TicTacToe> game;
 
@@ -71,8 +71,8 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
         games.push_back(move(game));
     }
 
-    cout<<"Close file\n";
-    in_file.close();    
+    cout<<"Close file...\n";
+    in_file.close();  
 
     return games;
 }
